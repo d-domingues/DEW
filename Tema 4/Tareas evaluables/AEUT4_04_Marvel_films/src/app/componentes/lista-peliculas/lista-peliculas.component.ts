@@ -92,6 +92,8 @@ export class ListaPeliculasComponent implements OnInit {
         return valoresValidos;
     }
 
+  @ViewChild('formNuevaPelicula') formNuevaPelicula!: ElementRef<HTMLDivElement> ;
+  
     /**
      * Metodo que construye una pelicula y 
      * la manda al servicio para aniadirla
@@ -102,7 +104,7 @@ export class ListaPeliculasComponent implements OnInit {
             let peliculaPorAniadir: InterfazPelicula = new ClasePelicula(this.peliculaService.idDisponible(), valores[0], valores[1], valores[2], valores[3], valores[4]);
             this.peliculaService.addPelicula(peliculaPorAniadir);
             this.mensajesService.aniadir("La película ha sido introducida con éxito");
-            document.getElementById("formNuevaPelicula")?.classList.add("d-none");
+           this.formNuevaPelicula.nativeElement?.classList.add("d-none");
             document.getElementById("botonCrearFormulario")!.innerHTML = "Añadir pelicula";
         } else {
             this.mensajesService.aniadir("La película introducida no es válida");
